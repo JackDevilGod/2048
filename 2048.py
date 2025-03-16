@@ -1,4 +1,5 @@
 from random import randint
+from typing import Literal
 
 
 class Game:
@@ -27,6 +28,9 @@ class Game:
             if self.matrix[y][x] == 0:
                 self.matrix[y][x] = 2
                 return
+
+    def move(self, move_id: Literal[1, 2, 3, 4]) -> None:
+        pass
 
 
 def main():
