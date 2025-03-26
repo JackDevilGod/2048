@@ -1,3 +1,5 @@
+import numpy as np
+
 from random import randint
 from typing import Literal
 
@@ -6,8 +8,7 @@ class Game:
     def __init__(self, size: int) -> None:
         self.size = size
 
-        self.matrix = [[0 for _ in range(self.size)]
-                       for _ in range(self.size)]
+        self.matrix = np.zeros((size, size), dtype=np.int64)
 
         self._add_new_block()
         self._add_new_block()
