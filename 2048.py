@@ -2,25 +2,28 @@ import numpy as np
 
 from random import randint
 from typing import Literal
+from os import system
 
 
 class Game:
     def __init__(self, size: int) -> None:
-        self.size = size
+        self.size: int = size
+        self.horizontal_bar: str = "--" + ("-" * ((2 * self.size) - 1))
 
-        self.matrix = np.zeros((size, size), dtype=np.int64)
+        self.matrix: np.ndarray = np.zeros((size, size), dtype=np.int64)
 
         self._add_new_block()
         self._add_new_block()
 
-    @property
     def print(self) -> None:
-        print("--" + "-" * ((2 * self.size) - 1))
+        system("cls")
+
+        print(self.horizontal_bar)
 
         for line in self.matrix:
             print("|" + "|".join([str(_) for _ in line]) + "|")
 
-        print("--" + "-" * ((2 * self.size) - 1))
+        print(self.horizontal_bar)
 
     def _add_new_block(self) -> None:
         while True:
@@ -36,7 +39,8 @@ class Game:
 
 def main():
     g = Game(3)
-    g.print
+    while True:
+        g.print()
 
 
 if __name__ == '__main__':
