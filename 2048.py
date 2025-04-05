@@ -38,26 +38,6 @@ class Game:
                 self.matrix[y][x] = 2
                 return
 
-    def move(self, move_id: Literal[0, 1, 2, 3]) -> None:
-        self.matrix = np.rot90(self.matrix, move_id)
-
-        for y_index in range(self.size):
-            for index in range(self.size):
-                if self.matrix[y_index][index] == 0:
-                    continue
-
-                for r_index in range(index - 1, -1, -1):
-                    if self.matrix[y_index][r_index] == 0:
-                        self.matrix[y_index][r_index] = self.matrix[y_index][r_index + 1]
-                        self.matrix[y_index][r_index + 1] = 0
-                    elif self.matrix[y_index][r_index] == self.matrix[y_index][r_index + 1]:
-                        self.matrix[y_index][r_index] *= 2
-                        self.matrix[y_index][r_index + 1] = 0
-                    else:
-                        break
-
-        self.matrix = np.rot90(self.matrix, abs(4 - move_id))
-
     def _simulate(self, move_id: Literal[0, 1, 2, 3]) -> np.ndarray:
         buffer_matrix = np.rot90(self.matrix, move_id).copy()
 
@@ -77,6 +57,9 @@ class Game:
                         break
 
         return np.rot90(buffer_matrix, abs(4 - move_id))
+
+    def move(self, move_id: Literal[0, 1, 2, 3]) -> None:
+        self.matrix = self._simulate(move_id)
 
     def start_game(self) -> None:
         buffer: list[np.ndarray] = [self._simulate(_) for _ in range(4)]
