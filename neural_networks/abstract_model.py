@@ -1,17 +1,18 @@
 from abc import ABC, abstractmethod
 
 from torch import nn
+import torch
 
 
 class abstract_model(nn.Module, ABC):
     @abstractmethod
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
     @abstractmethod
-    def forward(self):
+    def forward(self) -> torch.Tensor:
         pass
 
     @abstractmethod
-    def reset_game(self):
+    def reset_game(self) -> None:
         pass
