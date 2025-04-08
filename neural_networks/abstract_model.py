@@ -15,4 +15,7 @@ class abstract_model(nn.Module, ABC):
 
     @abstractmethod
     def reset_game(self) -> None:
+        """
+        Function to reset the model to prepare for a new game.
+        """
         pass
