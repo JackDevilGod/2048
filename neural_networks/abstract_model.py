@@ -4,7 +4,7 @@ from torch import nn
 import torch
 
 
-class abstract_model(nn.Module, ABC):
+class neural_model(nn.Module, ABC):
     @abstractmethod
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
